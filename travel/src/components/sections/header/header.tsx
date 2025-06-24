@@ -1,7 +1,10 @@
-import { Facebook, Instagram, Menu, MessageCircle, Phone, Search, Twitter, User } from 'lucide-react';
+import { Facebook, Instagram, MessageCircle, Phone, Twitter, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
+import MobileMenu from './mobile-menu';
+import { navigationLinks } from '@/constants';
+import SearchPage from './search';
 
 const Header = () => {
 
@@ -9,15 +12,6 @@ const Header = () => {
         {href: "#", icon: <Facebook size={16} /> },
         {href: "#", icon: <Twitter size={16} /> },
         {href: "#", icon: <Instagram size={16} /> },
-    ];
-
-    const navigationLinks = [
-        {href: "/", label: "Home"},
-        {href: "/about", label: "About"},
-        {href: "/hotels", label: "Hotels"},
-        {href: "/trips", label: "Trip"},
-        {href: "/rent-a-cars", label: "Rent A Car"},
-        {href: "/contact", label: "Contact"},
     ];
 
     return (
@@ -53,7 +47,7 @@ const Header = () => {
                 <div className='container mx-auto px-4 py-3 flex justify-between items-center'>
                     <Image src={"/logo.png"} alt="Travel" width={200} height={60} className='w-24 lg:w-38 h-auto' />
                     
-                    <nav className='hidden lg:flex space-x-8 text-lg font-semibold'>
+                    <nav className='hidden lg:flex space-x-8 text-md font-semibold'>
                         {navigationLinks.map((link, index) => (
                             <Link key={index} href={link.href} className='hover:text-orange-500'>
                                 {link.label}
@@ -62,15 +56,11 @@ const Header = () => {
                     </nav>
 
                     <div className='flex item-center space-x-4'>
-                        <div className='p-2 hidden lg:flex bg-orange-500 cursor-pointer text-white rounded-full'>
-                            <Search size={16}/>
-                        </div>
-                        <div className='p-2 bg-orange-500 cursor-pointer text-white rounded-full'>
-                            <Menu size={16}/>
-                        </div>
+                        <SearchPage />
                         <div className='p-2 bg-orange-500 cursor-pointer text-white rounded-full'>
                             <User size={16}/>
                         </div>
+                        <MobileMenu />
                     </div>
                 </div>
             </div>
