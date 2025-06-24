@@ -11,6 +11,30 @@ import {
 } from "@/components/ui/card"
 import { Skeleton } from '@/components/ui/skeleton';
 import { Hotel } from "@/models/hotel";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { apiBase } from '@/constants';
+
+
+const filterSchema = z.object({
+  rating: z.string().optional(),
+  priceMin: z.string().optional(),
+  priceMax: z.string().optional(),
+})
+
+type FilterValues = z.infer<typeof filterSchema>;
 
 const HotelList = () => {
 
@@ -18,22 +42,102 @@ const HotelList = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
+    const form = useForm<FilterValues>({
+        resolver: zodResolver(filterSchema),
+        defaultValues: {
+            rating: "",
+            priceMin: "",
+            priceMax: "",
+        }
+    })
+
+    const fetchHotels = (filters: FilterValues = {}) => {
+        setLoading(true);
+        setError(false);
+        let url = `${apiBase}/api/Hotel/GetHotelList`;
+        const params = new URLSearchParams();
+        
+        if(filters.rating) params.append("rating", filters.rating);
+        if(filters.priceMin) params.append("priceMin", filters.priceMin);
+        if(filters.priceMax) params.append("priceMax", filters.priceMax);
+
+        if(params.toString()){
+            url += "?" + params.toString();
+        }
+
+        fetch(url)
+            .then((res) => res.json())
+            .then((data: Hotel[]) => {
+                setHotels(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(true);
+                setLoading(false);
+            });
+    }
+
     useEffect(() => {
-        fetch("http://localhost:5223/api/Hotel/GetHotelList")
-        .then((res) => res.json())
-        .then((data: Hotel[]) => {
-            setHotels(data);
-            setLoading(false);
-        })
-        .catch((err) => {
-            setError(true);
-            setLoading(false);
-        })
+        fetchHotels();
     }, []);
+
+
+    function onSubmit(values: FilterValues) {
+        fetchHotels(values);
+    }
 
     return (
         <div className='container mx-auto p-4'>
             <h1 className='text-2xl font-bold mb-4'>Hotels</h1>
+
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="mb-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <FormField
+                        control={form.control}
+                        name="rating"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Rating</FormLabel>
+                            <FormControl>
+                                <Input type="number" step="0.1" placeholder='e.g., 4.5' {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="priceMin"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Price Min</FormLabel>
+                            <FormControl>
+                                <Input type="number" placeholder='Minimum Price' {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="priceMax"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Price Max</FormLabel>
+                            <FormControl>
+                                <Input type="number" placeholder='Maximum Price' {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <Button type="submit">Submit</Button>
+                </form>
+            </Form>
+
 
             {loading && (
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
@@ -49,6 +153,12 @@ const HotelList = () => {
                 </div>
             )}
 
+            {!loading && !error && hotels.length === 0 && (
+                <div className='text-center text-blue-500 font-semibold'>
+                    No hotel found.
+                </div>
+            )}
+
             {!loading && !error &&(
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                     {hotels.map((hotel) => (
@@ -58,9 +168,9 @@ const HotelList = () => {
                                 <CardTitle className='text-lg font-semibold mt-2'>{hotel.name}</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className='text-gray-700'>{hotel.description}</p>
-                                <p className='text-gray-700'>{hotel.location}</p>
-                                <p className='text-gray-700'>{hotel.pricePerNight} / Night</p>
+                                <p className='text-gray-700 mb-1'>{hotel.description}</p>
+                                <p className='text-sm text-gray-500 mb-2'>{hotel.location}</p>
+                                <p className='text-lg font-bold'>${hotel.pricePerNight} / Night</p>
                             </CardContent>
                         </Card>
                     ))}

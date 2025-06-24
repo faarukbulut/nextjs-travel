@@ -13,7 +13,7 @@ public static class HotelData
             Description = "Luxury 5-star hotel offering panoramic views of the Bosphorus.",
             Location = "Istanbul",
             Address = "Visnezade Mah. Acisu Sok. NO:19, Macka, Besiktas, Istanbul",
-            Rating = 5,
+            Rating = 3,
             PricePerNight = 7500,
         },
         new Hotel

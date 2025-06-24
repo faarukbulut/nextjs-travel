@@ -1,3 +1,5 @@
+export const apiBase = 'http://localhost:5223';
+
 export const navigationLinks = [
     {href: "/", label: "Home"},
     {href: "/about", label: "About"},

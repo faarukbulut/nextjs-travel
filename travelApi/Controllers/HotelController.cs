@@ -16,9 +16,9 @@ namespace travelApi.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetHotelList()
+        public async Task<IActionResult> GetHotelList(string? rating, string? priceMin, string? priceMax)
         {
-            var values = await _hotelRepository.GetHotelListAsync();
+            var values = await _hotelRepository.GetHotelListAsync(rating, priceMin, priceMax);
             return Ok(values);
         }
     }
