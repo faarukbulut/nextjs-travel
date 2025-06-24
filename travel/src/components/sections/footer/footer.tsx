@@ -18,7 +18,7 @@ const Footer = () => {
 
     return (
       <footer className='relative bg-black text-white'>
-        <div className='absolute -top-52 left-1/2 transform -translate-x-1/2 bg-orange-500 text-left px-6 py-12 rounded-md shadow-lg w-11/12 max-w-6xl h-72 grid grid-cols-1 md:grid-cols-2 items-center gap-6'>
+        <div className='absolute -top-16 left-1/2 transform -translate-x-1/2 bg-orange-500 text-left px-6 py-12 rounded-md shadow-lg w-11/12 max-w-6xl h-72 grid grid-cols-1 md:grid-cols-2 items-center gap-6'>
           <div>
             <h2 className='text-3xl font-bold'>Ready to get started?</h2>
             <p className='mt-2 text-lg'>It only takes a few minutes to register your FREE travel account.</p>
@@ -34,8 +34,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className='container mx-auto py-32 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8'>
-          <div className='lg:col-span-2'>
+        <div className='container mx-auto py-56 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-8'>
+          <div className='lg:col-span-2 mt-16'>
             <h3 className='text-2x1 font-bold'>Travel</h3>
             <p className='mt-4 text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident maiores quia officiis corrupti aspernatur. Quod, commodi ad laboriosam autem alias consequatur voluptatibus deleniti architecto enim!</p>
             <div className='flex mt-4 space-x-4'>
@@ -47,7 +47,7 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <h4 className='text-xl font-bold mb-4'>Useful Links</h4>
+            <h4 className='text-xl font-bold mb-4 mt-16'>Useful Links</h4>
             <div className='space-y-2 text-sm'>
               {navigationLinks.map((link, index) => (
                   <Link key={index} href={link.href} className='block hover:text-orange-500'>
@@ -57,7 +57,7 @@ const Footer = () => {
             </div>
           </div>
           <div className='lg:col-span-2'>
-            <h4 className='text-xl font-bold mb-4'>Instagram</h4>
+            <h4 className='text-xl font-bold mb-4 mt-16'>Instagram</h4>
             <div className='grid grid-cols-6 gap-2'>
               {instagramImages.map((src, index) => (
                 <Image key={index} src={src} width={50} height={50} alt='' className='w-full h-auto' />
@@ -65,7 +65,7 @@ const Footer = () => {
             </div>
           </div>
           <div className='lg:col-span-2'>
-            <h4 className='text-xl font-bold mb-4'>Subscribe</h4>
+            <h4 className='text-xl font-bold mb-4 mt-16'>Subscribe</h4>
             <p className='text-sm mb-4'>Subscribe our newsletter for getting quick updates.</p>
             <div className='flex flex-col sm:flex-row gap-2'>
               <Input type='email' placeholder='Your Email Adress' className='w-full px-4 py-2'/>
