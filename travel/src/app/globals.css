@@ -120,3 +120,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+.swiper-button-prev {
+  @apply text-orange-600;
+  color: theme('colors.orange.600') !important;
+}
+
+.swiper-button-next {
+  @apply text-orange-600;
+  color: theme('colors.orange.600') !important;
+}
+
+.bg-hero-swipe {
+  background-image: url('/slider/bgswipe.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
