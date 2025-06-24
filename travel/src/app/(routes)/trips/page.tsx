@@ -1,8 +1,11 @@
 import React from 'react'
+import TripList from './_components/trip-list'
 
 const TripsPage = () => {
   return (
-    <div>TripsPage</div>
+    <div>
+      <TripList />
+    </div>
   )
 }
 
