@@ -61,9 +61,9 @@ const Header = () => {
 
                     <div className='flex item-center space-x-4'>
                         <SearchPage />
-                        <div className='p-2 bg-orange-500 cursor-pointer text-white rounded-full'>
+                        <Link href="/login" className='p-2 bg-orange-500 cursor-pointer text-white rounded-full'>
                             <User size={16}/>
-                        </div>
+                        </Link>
                         <MobileMenu />
                     </div>
                 </div>

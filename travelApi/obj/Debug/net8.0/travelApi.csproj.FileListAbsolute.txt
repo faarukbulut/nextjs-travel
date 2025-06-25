@@ -68,3 +68,4 @@ C:/Users/kaanb/OneDrive/Belgeler/Github/travelapp/travelApi/obj/Debug/net8.0/ref
 /Users/alesiagroup/Documents/Github/travelapp/travelApi/obj/Debug/net8.0/travelApi.pdb
 /Users/alesiagroup/Documents/Github/travelapp/travelApi/obj/Debug/net8.0/travelApi.genruntimeconfig.cache
 /Users/alesiagroup/Documents/Github/travelapp/travelApi/obj/Debug/net8.0/ref/travelApi.dll
+/Users/alesiagroup/Documents/Github/travelapp/travelApi/bin/Debug/net8.0/BCrypt.Net-Next.dll

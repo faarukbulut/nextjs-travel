@@ -11,6 +11,7 @@ public static class UserData
             UserId = 1,
             Email = "john.doe@example.com",
             UserName = "johndoe",
+            Password = BCrypt.Net.BCrypt.HashPassword("123456", workFactor: 12),
             Photo = "https://example.com/photos/johndoe.jpg",
             FirstName = "John",
             LastName = "Doe"

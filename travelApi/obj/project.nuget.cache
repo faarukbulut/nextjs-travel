@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "f+OxhTtu+4Q=",
+  "dgSpecHash": "vmL3hnx5d8g=",
   "success": true,
   "projectFilePath": "/Users/alesiagroup/Documents/Github/travelapp/travelApi/travelApi.csproj",
   "expectedPackageFiles": [
+    "/Users/alesiagroup/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/alesiagroup/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "/Users/alesiagroup/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
     "/Users/alesiagroup/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
